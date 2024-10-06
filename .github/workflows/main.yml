@@ -15,18 +15,12 @@ jobs:
 
     steps:
     # Step 1: Checkout the repository
-    - name: Checkout repository
-    - uses: actions/checkout@v4
-    - uses: oven-sh/setup-bun@v2
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2     
+      - run: bun install
+      - run: bun run build
       
-    - name: install and build
-    - run : bun install
-    - run : bun run build
-         
-    
-    # Step 5: Upload built artifacts (Optional, if you want to use the build artifacts)
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist
-        path: dist/
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/
