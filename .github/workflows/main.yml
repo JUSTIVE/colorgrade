@@ -19,10 +19,17 @@ jobs:
       - uses: oven-sh/setup-bun@v2     
       - run: bun install
       - run: bun run build
-      
+     
+  deploy:
+    needs: build
+   
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write 
+    runs-on: ubuntu-latest
+    steps: 
       - uses: actions/upload-artifact@v3.2.1-node20
         with:
           name: dist
           path: dist/
       - uses: actions/deploy-pages@v4
-         
