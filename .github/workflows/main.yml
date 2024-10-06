@@ -24,3 +24,4 @@ jobs:
         with:
           name: dist
           path: dist/
+      - uses: actions/deploy-pages@v4
