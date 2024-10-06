@@ -17,6 +17,8 @@ jobs:
     # Step 1: Checkout the repository
     - name: Checkout repository
       uses: actions/checkout@v3
+      
+    - name: bun setup and build
       run: |
         curl -fsSL https://bun.sh/install | bash
         echo 'export BUN_INSTALL="$HOME/.bun"' >> $GITHUB_ENV
