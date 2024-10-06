@@ -16,16 +16,13 @@ jobs:
     steps:
     # Step 1: Checkout the repository
     - name: Checkout repository
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v2
       
-    - name: bun setup and build
-      run: |
-        curl -fsSL https://bun.sh/install | bash
-        echo 'export BUN_INSTALL="$HOME/.bun"' >> $GITHUB_ENV
-        echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> $GITHUB_ENV
-        source $GITHUB_ENV
-           | bun install
-           | bun run build
+    - name: install and build
+    - run : bun install
+    - run : bun run build
+         
     
     # Step 5: Upload built artifacts (Optional, if you want to use the build artifacts)
     - name: Upload build artifacts
