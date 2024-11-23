@@ -13,7 +13,7 @@ export const Control = () => {
   const workspace = useAtomValue(workspaceAtom);
 
   return (
-    <Card className="w-[240px] flex flex-col gap-2 p-2">
+    <Card className="w-[320px] flex flex-col gap-2 p-2">
       <CardHeader>
         <CardTitle>Controls</CardTitle>
       </CardHeader>
@@ -71,20 +71,20 @@ export const Control = () => {
           step={1}
         />
         <Label className="text-sm flex flex-row justify-between">
-          <span>Saturation</span>
-          <span>{options.saturation}</span>
+          <span>Chroma</span>
+          <span>{options.chroma}</span>
         </Label>
         <Slider
-          defaultValue={[options.saturation]}
+          defaultValue={[options.chroma]}
           onValueChange={(value) => {
             setOptions({
               ...options,
-              saturation: Number(value),
+              chroma: Number(value),
             });
           }}
           min={0}
-          max={100}
-          step={1}
+          max={0.4}
+          step={0.01}
         />
         <Label className="text-sm flex flex-row justify-between">
           <span>Gamma</span>

@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { paletteSetAtom, workspaceAtom, workspaceCore } from "./atoms";
+import { oklch, paletteSetAtom, workspaceAtom, workspaceCore } from "./atoms";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 
 export const Palettes = () => {
@@ -24,8 +24,10 @@ export const Palettes = () => {
                 className="w-10 rounded-2xl flex items-center justify-center transition-all text-sm text-center hover:text-xs active:text-[13px]"
                 onClick={() => {
                   navigator.clipboard.writeText(
-                    `[${paletteSet.colors
-                      .map((color) => `#${color}`)
+                    `[${paletteSet.luminances
+                      .map((luminance) =>
+                        oklch(luminance, paletteSet.chroma, paletteSet.hue),
+                      )
                       .join(",")}]`,
                   );
                 }}
@@ -43,10 +45,16 @@ export const Palettes = () => {
                   });
                 }}
               >
-                {paletteSet.colors.map((color) => (
+                {paletteSet.luminances.map((luminance) => (
                   <div
-                    key={color}
-                    style={{ backgroundColor: `#${color}` }}
+                    key={luminance}
+                    style={{
+                      backgroundColor: oklch(
+                        luminance,
+                        paletteSet.chroma,
+                        paletteSet.hue,
+                      ),
+                    }}
                     className=" flex-1 h-full flex items-center justify-center"
                   />
                 ))}

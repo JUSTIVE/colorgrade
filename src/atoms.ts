@@ -6,12 +6,14 @@ export type PaletteOptions = {
   startLuminance: number;
   endLuminance: number;
   gradientLevels: number;
-  saturation: number;
+  chroma: number;
   hue: number;
   gamma: number;
 };
 
-export type Palette = { colors: string[] } & PaletteOptions;
+export type Palette = {
+  luminances: number[];
+} & PaletteOptions;
 
 export const paletteSetAtom = atom<Palette[]>([]);
 
@@ -20,7 +22,7 @@ export const workspaceCore = atom<PaletteOptions>({
   startLuminance: 0,
   endLuminance: 100,
   gradientLevels: 10,
-  saturation: 100,
+  chroma: 0.18,
   hue: 0,
   gamma: 2.2,
 });
@@ -29,22 +31,15 @@ const calculateColors = ({
   startLuminance,
   endLuminance,
   gradientLevels,
-  saturation,
-  hue,
   gamma,
-}: PaletteOptions): string[] => {
+}: PaletteOptions): number[] => {
   const luminanceRange = endLuminance - startLuminance;
-  const luminanceSteps = luminanceRange / (gradientLevels - 1);
   const colors = [];
   for (let i = 0; i < gradientLevels; i++) {
-    const color = convert.hsl.hex([
-      hue,
-      saturation,
+    colors.push(
       startLuminance +
-        (endLuminance - startLuminance) *
-          (i / (gradientLevels - 1)) ** (1 / gamma),
-    ]);
-    colors.push(color);
+        luminanceRange * (i / (gradientLevels - 1)) ** (1 / gamma),
+    );
   }
   return colors;
 };
@@ -53,6 +48,9 @@ export const workspaceAtom = atom<Palette>((get) => {
   const workspace = get(workspaceCore);
   return {
     ...workspace,
-    colors: calculateColors(workspace),
+    luminances: calculateColors(workspace),
   };
 });
+
+export const oklch = (luminance: number, chroma: number, hue: number) =>
+  `oklch(${Math.round(luminance * 100) / 100}% ${chroma} ${hue})`;

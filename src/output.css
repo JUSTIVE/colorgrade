@@ -584,6 +584,9 @@ video {
 
 #root{
   height:100vh;
+  *{
+    font-variant-numeric: tabular-nums;
+  }
 }
 
 .absolute {
@@ -592,6 +595,10 @@ video {
 
 .relative {
   position: relative;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 
 .block {
@@ -749,12 +756,12 @@ video {
   border-radius: calc(var(--radius) - 2px);
 }
 
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
 .rounded-sm {
   border-radius: calc(var(--radius) - 4px);
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
 }
 
 .border {
@@ -786,6 +793,11 @@ video {
   background-color: hsl(var(--destructive));
 }
 
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
 .bg-primary {
   background-color: hsl(var(--primary));
 }
@@ -801,11 +813,6 @@ video {
 
 .bg-secondary {
   background-color: hsl(var(--secondary));
-}
-
-.bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .p-2 {

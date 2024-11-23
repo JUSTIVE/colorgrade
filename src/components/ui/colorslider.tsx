@@ -23,17 +23,17 @@ const ColorSlider = React.forwardRef<
         style={{
           background: `linear-gradient(\
           90deg,\
-          hsl(0, ${workspaceOption.saturation}%, 50%) 0%,\
-           hsl(36, ${workspaceOption.saturation}%,50%) 10%,\
-           hsl(72, ${workspaceOption.saturation}%,50%) 20%,\
-           hsl(108, ${workspaceOption.saturation}%,50%) 30%,\
-           hsl(144, ${workspaceOption.saturation}%,50%) 40%,\
-           hsl(180, ${workspaceOption.saturation}%,50%) 50%,\
-           hsl(216, ${workspaceOption.saturation}%,50%) 60%,\
-           hsl(252, ${workspaceOption.saturation}%,50%) 70%,\
-           hsl(288, ${workspaceOption.saturation}%,50%) 80%,\
-           hsl(324, ${workspaceOption.saturation}%,50%) 90%,\
-           hsl(360, ${workspaceOption.saturation}%, 50%) 100%)`,
+          oklch( 50%, ${workspaceOption.chroma},0%) 0%,\
+           oklch(50%, ${workspaceOption.chroma},36%) 10%,\
+           oklch(50%, ${workspaceOption.chroma},72%) 20%,\
+           oklch(50%, ${workspaceOption.chroma},108%) 30%,\
+           oklch(50%, ${workspaceOption.chroma},144%) 40%,\
+           oklch(50%, ${workspaceOption.chroma},180%) 50%,\
+           oklch(50%, ${workspaceOption.chroma},216%) 60%,\
+           oklch(50%, ${workspaceOption.chroma},252%) 70%,\
+           oklch(50%, ${workspaceOption.chroma},288%) 80%,\
+           oklch(50%, ${workspaceOption.chroma},324%) 90%,\
+           oklch( 50%, ${workspaceOption.chroma},360%) 100%)`,
         }}
       />
       <SliderPrimitive.Thumb className="block h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
